@@ -4,7 +4,7 @@ import os
 here = os.path.abspath(os.path.dirname(__file__))
 long_description = open("./README.md").read()
 
-version_string = '1.0.2'
+version_string = '1.0.3'
 
 setup(
     name="as_a_service",

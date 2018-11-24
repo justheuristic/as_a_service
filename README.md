@@ -5,6 +5,7 @@ A simple package that transforms a batch function {inputs->results} into a servi
 - processes them - and returns results back to whoever was asking
 
 ### Usage:
+__[notebook version](https://github.com/justheuristic/as_a_service/blob/master/example.ipynb)__
 
 Here's how it feels
 ```python

@@ -4,22 +4,19 @@ import os
 import re
 
 here = os.path.abspath(os.path.dirname(__file__))
+long_description = open("./README.md").read()
 
-import prefetch_generator
-# loading README
-long_description = prefetch_generator.__doc__
-
-version_string = '1.0.1'
+version_string = '1.0.0'
 
 setup(
-    name="prefetch_generator",
+    name="as_a_service",
     version=version_string,
-    description="a simple tool to compute arbitrary generator in a background thread",
+    description="a simple tool to turn your function into a background service",
     long_description=long_description,
 
     # Author details
     author_email="justheuristic@gmail.com",
-    url="https://github.com/justheuristic/prefetch_generator",
+    url="https://github.com/justheuristic/as_a_service",
 
     # Choose your license
     license='MIT',
@@ -40,15 +37,17 @@ setup(
         'Programming Language :: Python :: 2.7 ',
         'Programming Language :: Python :: 3.4 ',
         'Programming Language :: Python :: 3.5 ',
+        'Programming Language :: Python :: 3.6 ',
+        'Programming Language :: Python :: 3.7 ',
 
     ],
 
     # What does your project relate to?
-    keywords='background generator, prefetch generator, parallel generator, prefetch, background,' + \
-             'deep learning, theano, tensorflow, lasagne, blocks',
+    keywords='service, background service, batched executor, parallel executor, background executor, background,' + \
+             'deep learning, reinforcement learning',
 
     # List run-time dependencies here. These will be installed by pip when your project is installed.
     install_requires=[
-        #nothing
+        # nothing
     ],
 )

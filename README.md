@@ -4,16 +4,10 @@ A simple package that transforms a batch function {inputs->results} into a servi
 - groups inputs into batches - you specify max batch size and time waiting
 - processes them - and returns results back to whoever was asking
 
-### Install:
- *  ```pip install as_a_service```
- *  No dependencies apart from standard libraries
- *  Works with both python2 and python3 (pip3 install)
-
-
 ### Usage:
 
 Here's how it feels
-```
+```python
 @as_batched_service(batch_size=3, max_delay=0.1)
 def square(batch_xs):
     print("processing...", batch_xs)
@@ -38,10 +32,15 @@ You can also use it as a drop-in replacement for a function that processes one i
 
 This package contains three objects
  - BatchedService(batch_process_func, batch_size, max_delay) - main object
- - @as_batched_service(batch_size, max_delay) - decorator version
- - @as_service(max_delay) - decorator for service without batches
+ - @as_batched_service(batch_size, max_delay) - same thing as a decorator
+ - @as_service(max_delay) - decorator for a function without batches (single input/output)
 
-Use help(BatchedService) for details.
+Use help(BatchedService) and "Why should I care?" for more details.
+
+### Install:
+ *  ```pip install as_a_service```
+ *  No dependencies apart from standard libraries
+ *  Works with both python2 and python3 (pip3 install)
 
 
 ### Why should I care?
@@ -50,7 +49,7 @@ This primitive is useful for a number of scenarios like:
 1) You are building a web-based demo around your neural network. You want your network to process
     a stream of user queries, but doing so one query at a time is slow. Batch-parallel processing is way better.
 
-```
+```python
 @as_batched_service(batch_size=32, max_delay=1.0)
 def service_predict(input_images_list):
     predictions_list = my_network_predict_batch(input_images_list)
@@ -66,7 +65,7 @@ def handle_user_query(query):
     that predicts actions. You want to play 100 parallel game sessions to train on.
     Playing one session at a time is slow. If only we could run multiple sessions on one GPU
 
-```
+```python
 my_network = make_keras_network_on_gpu()
 service = BatchedService(my_network.predict, batch_size=32, max_delay=1.0)
 threads = [

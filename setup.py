@@ -1,12 +1,10 @@
 from setuptools import setup, find_packages
-import codecs
 import os
-import re
 
 here = os.path.abspath(os.path.dirname(__file__))
 long_description = open("./README.md").read()
 
-version_string = '1.0.0'
+version_string = '1.0.1'
 
 setup(
     name="as_a_service",

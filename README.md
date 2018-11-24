@@ -1,4 +1,4 @@
-# batched_service
+# as_a_service
 
 A simple package that transforms a batch function {inputs->results} into a service that
 - groups inputs into batches - you specify max batch size and time waiting

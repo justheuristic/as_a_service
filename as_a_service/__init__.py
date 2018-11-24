@@ -57,7 +57,7 @@ class BatchedService(threading.Thread):
             futures, items, deadline = [], [], time.time() + self.max_delay
             try:
                 for i in range(self.batch_size):
-                    future, item = self.queue.get(timeout=deadline - time.time())
+                    future, item = self.queue.get(timeout=max(0, deadline - time.time()))
                     if future == self.NO_MORE_ITEMS: return
                     futures.append(future)
                     items.append(item)

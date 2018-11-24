@@ -25,12 +25,10 @@ class BatchedService(threading.Thread):
         :param max_delay: maximum amount of time [float, seconds] that service can
             wait for new requests to fill the batch.
             A batch is processed after max_delay even if it isn't full.
-            if 0, don't wait at all (groups only items submitted since last run, but at most batch_size of them)
         :param max_queued: maximum number of elements that can be queued. 0(default) means unlimited
 
         Notes:
          - It's safe to change batch_size and max_delay on the fly, provided they are valid (e.g. not inf)
-         -
 
         Example use case: a neural network on GPU that has to process a stream of requests.
         >>> my_network = make_keras_network_on_gpu()
@@ -48,6 +46,7 @@ class BatchedService(threading.Thread):
         self.queue = queue.Queue(max_queued)
         self.lock_closing = threading.Lock()
         self.closing = False
+        assert max_delay > 0, "delay must be non-negative. Please set some small number (e.g. 1e-5) instead."
         super().__init__()
         if start: self.start()
 

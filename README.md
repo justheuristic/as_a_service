@@ -1,3 +1,4 @@
+[THE PACKAGE IS NO LONGER UNSUPPORTED]
 # as_a_service
 
 A simple package that transforms a batch function {inputs->results} into a service that
